@@ -4,7 +4,7 @@ import glob
 
 import pandas as pd
 
-game_files = glob.glob(os.path.join('F:\\Python-Baseball\\','games', '*.EVE')) #gets name of files, path from lesson is wrong
+game_files = glob.glob(os.path.join(os.getcwd(),'games', '*.EVE')) #gets name of files, path from lesson is wrong
 game_files.sort() #sort list of files by name
 
 game_frames = []
