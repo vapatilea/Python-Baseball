@@ -4,7 +4,7 @@ import glob
 
 import pandas as pd
 
-game_files = glob.glob(os.path.join(os.getcwd(),'games', '*.EVE')) #gets name of files
+game_files = glob.glob(os.path.join('F:\\Python-Baseball\\','games', '*.EVE')) #gets name of files, path from lesson is wrong
 game_files.sort() #sort list of files by name
 
 game_frames = []
@@ -15,7 +15,7 @@ for game_file in game_files:
 
 games = pd.concat(game_frames) #what does this do
 
-games.loc[games['multi5'] == '??', 'multi5'] = '' #replace rows with ?? with empty space in multi5 column
+games.loc[games['multi5'] == '??', 'multi5'] = '' #replace rows with ?? with empty space in multi5 column. not working
 
 identifiers = games['multi2'].str.extract(r'(.LS(\d{4})\d{5})') #extract ids
 identifiers = identifiers.fillna(method='ffill') #fill identifiers
@@ -25,6 +25,6 @@ games = pd.concat([games, identifiers], axis=1, sort=False) #what does this do
 
 games = games.fillna(' ') #fill Nan with empty space
 
-games.loc[:, 'type'] = pd.Categorical(games.loc[:, ['type']]) #reduce memory used by frame
+games.loc[:, 'type'] = pd.Categorical(games.loc[:, 'type']) #reduce memory used by frame
 
 print(games.head())
